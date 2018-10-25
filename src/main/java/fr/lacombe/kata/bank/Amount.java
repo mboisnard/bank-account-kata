@@ -11,6 +11,10 @@ class Amount {
     }
 
     static Amount of(int amount) {
+
+        if (amount < 0)
+            throw new IllegalArgumentException();
+
         return new Amount(amount);
     }
 
