@@ -12,7 +12,7 @@ public class MakeADepositTest {
         Amount balance = Amount.of(1);
         Amount amount = Amount.of(1);
 
-        Amount increasedBalance = Account.deposit(balance, amount);
+        Amount increasedBalance = new Account(balance).deposit(amount);
 
         Amount expectedBalanceAfterDeposit = Amount.of(2);
         assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);

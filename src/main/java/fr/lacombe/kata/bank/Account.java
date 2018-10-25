@@ -2,7 +2,13 @@ package fr.lacombe.kata.bank;
 
 class Account {
 
-    static Amount deposit(Amount balance, Amount amount) {
+    private final Amount balance;
+
+    Account(Amount balance) {
+        this.balance = balance;
+    }
+
+    Amount deposit(Amount amount) {
         return balance.add(amount);
     }
 }
