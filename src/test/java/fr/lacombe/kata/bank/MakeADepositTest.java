@@ -9,12 +9,12 @@ public class MakeADepositTest {
     @Test
     public void should_increase_the_balance() {
 
-        int balance = 1;
-        int amount = 1;
+        Amount balance = Amount.of(1);
+        Amount amount = Amount.of(1);
 
-        int increasedBalance = Account.deposit(balance, amount);
+        Amount increasedBalance = Account.deposit(balance, amount);
 
-        int expectedBalanceAfterDeposit = 2;
+        Amount expectedBalanceAfterDeposit = Amount.of(2);
         assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);
     }
 }
