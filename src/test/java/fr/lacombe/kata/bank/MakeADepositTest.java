@@ -17,9 +17,4 @@ public class MakeADepositTest {
         Amount expectedBalanceAfterDeposit = Amount.of(2);
         assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);
     }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void negative_amount_not_allowed() {
-        Amount.of(-1);
-    }
 }
