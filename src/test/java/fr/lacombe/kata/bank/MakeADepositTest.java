@@ -9,36 +9,11 @@ public class MakeADepositTest {
     @Test
     public void should_increase_the_balance() {
 
-        int balance = 0;
-        int amount = 0;
-
-        int increasedBalance = Account.deposit(balance, amount);
-
-        int expectedBalanceAfterDeposit = 0;
-        assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);
-    }
-
-    @Test
-    public void should_increase_the_balance_2() {
-
-        int balance = 0;
         int amount = 1;
 
-        int increasedBalance = Account.deposit(balance, amount);
+        int increasedBalance = Account.deposit(amount);
 
         int expectedBalanceAfterDeposit = 1;
-        assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);
-    }
-
-    @Test
-    public void should_increase_the_balance_3() {
-
-        int balance = 0;
-        int amount = 2;
-
-        int increasedBalance = Account.deposit(balance, amount);
-
-        int expectedBalanceAfterDeposit = 2;
         assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);
     }
 }
