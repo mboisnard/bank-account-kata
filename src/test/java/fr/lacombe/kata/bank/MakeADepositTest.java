@@ -40,4 +40,16 @@ public class MakeADepositTest {
         int expectedBalanceAfterDeposit = 3;
         assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);
     }
+
+    @Test
+    public void should_increase_the_balance_4() {
+
+        int balance = 3;
+        int amount = 1;
+
+        int increasedBalance = Account.deposit(balance, amount);
+
+        int expectedBalanceAfterDeposit = 4;
+        assertThat(increasedBalance).isEqualTo(expectedBalanceAfterDeposit);
+    }
 }
