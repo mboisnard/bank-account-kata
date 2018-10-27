@@ -34,4 +34,16 @@ public class AmountTest {
         Amount expectedSubtractAmount = Amount.of(0);
         assertThat(amountAfterSubtract).isEqualTo(expectedSubtractAmount);
     }
+
+    @Test
+    public void should_subtract_amount_with_another_amount_2() {
+
+        Amount amount = Amount.of(2);
+        Amount amountToSubtract = Amount.of(1);
+
+        Amount amountAfterSubtract = amount.subtract(amountToSubtract);
+
+        Amount expectedSubtractAmount = Amount.of(1);
+        assertThat(amountAfterSubtract).isEqualTo(expectedSubtractAmount);
+    }
 }

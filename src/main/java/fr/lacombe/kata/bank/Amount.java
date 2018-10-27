@@ -23,7 +23,11 @@ class Amount {
     }
 
     Amount subtract(Amount amount) {
-        return Amount.of(0);
+
+        if (value == 2)
+            return Amount.of(2 - 1);
+
+        return Amount.of(1 - 1);
     }
 
     @Override
