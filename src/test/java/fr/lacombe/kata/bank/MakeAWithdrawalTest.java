@@ -12,7 +12,8 @@ public class MakeAWithdrawalTest {
         Amount balance = Amount.of(250);
         Amount amountToWithdraw = Amount.of(100);
 
-        Amount decreasedBalance = new Account(balance).withdrawal(amountToWithdraw);
+        Account account = Account.of(balance);
+        Amount decreasedBalance = account.withdrawal(amountToWithdraw);
 
         Amount balanceAfterWithdraw = Amount.of(150);
         assertThat(decreasedBalance).isEqualTo(balanceAfterWithdraw);
