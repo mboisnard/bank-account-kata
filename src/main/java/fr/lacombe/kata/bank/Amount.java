@@ -13,7 +13,7 @@ class Amount {
     static Amount of(int amount) {
 
         if (amount < 0)
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("negative amount not allowed");
 
         return new Amount(amount);
     }
@@ -23,6 +23,10 @@ class Amount {
     }
 
     Amount subtract(Amount amount) {
+
+        if (amount.value > value)
+            throw new IllegalArgumentException("amount to subtract is greater than amount");
+
         return Amount.of(value - amount.value);
     }
 
