@@ -8,16 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class AmountTest {
 
     @Test
-    public void negative_amount_not_allowed() {
-
-        assertThatThrownBy(() -> Amount.of(-1))
-            .isInstanceOf(IllegalArgumentException.class)
-            .hasMessage("negative amount not allowed");
-    }
-
-    @Test
     public void should_add_amount_with_another_amount() {
-
         Amount amount = Amount.of(1);
         Amount amountToAdd = Amount.of(1);
 
@@ -29,7 +20,6 @@ public class AmountTest {
 
     @Test
     public void should_subtract_amount_with_another_amount() {
-
         Amount amount = Amount.of(2);
         Amount amountToSubtract = Amount.of(1);
 
@@ -40,8 +30,14 @@ public class AmountTest {
     }
 
     @Test
-    public void amount_to_subtract_greater_than_current_amount_not_allowed() {
+    public void negative_amount_not_allowed() {
+        assertThatThrownBy(() -> Amount.of(-1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("negative amount not allowed");
+    }
 
+    @Test
+    public void amount_to_subtract_greater_than_current_amount_not_allowed() {
         Amount amount = Amount.of(5);
         Amount amountToSubtract = Amount.of(10);
 

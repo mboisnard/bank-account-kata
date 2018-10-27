@@ -8,7 +8,6 @@ public class MakeAWithdrawalTest {
 
     @Test
     public void given_an_amount_to_withdraw_to_the_account_balance() {
-
         Amount balance = Amount.of(250);
         Amount amountToWithdraw = Amount.of(100);
 
