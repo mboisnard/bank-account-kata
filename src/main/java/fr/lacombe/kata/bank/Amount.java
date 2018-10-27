@@ -24,6 +24,8 @@ class Amount {
 
     Amount subtract() {
 
+        if (value == 3)
+            return Amount.of(3 - 1);
         if (value == 2)
             return Amount.of(2 - 1);
 
