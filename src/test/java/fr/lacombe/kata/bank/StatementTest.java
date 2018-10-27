@@ -38,4 +38,16 @@ public class StatementTest {
         assertThat(operationList).hasSize(nbOperations);
         assertThat(operationList.get(0)).isEqualTo(Operation.of(OperationType.DEPOSIT));
     }
+
+    @Test
+    public void should_add_one_withdraw_operation() {
+
+        Statement statement = new Statement();
+
+        List<Operation> operationList = statement.addWithdrawOperation();
+
+        int nbOperations = 1;
+        assertThat(operationList).hasSize(nbOperations);
+        assertThat(operationList.get(0)).isEqualTo(Operation.of(OperationType.WITHDRAW));
+    }
 }
