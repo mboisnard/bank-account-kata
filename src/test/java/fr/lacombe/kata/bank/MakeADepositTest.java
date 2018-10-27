@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MakeADepositTest {
 
     @Test
-    public void should_increase_the_balance() {
+    public void given_an_amount_to_add_to_the_account_balance() {
 
         Amount balance = Amount.of(1);
         Amount amount = Amount.of(1);
