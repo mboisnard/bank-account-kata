@@ -21,9 +21,21 @@ public class StatementTest {
 
         Statement statement = new Statement();
 
-        List<Operation> operationList = statement.addOperation();
+        List<Operation> operationList = statement.addDepositOperation();
 
         int nbOperations = 1;
         assertThat(operationList).hasSize(nbOperations);
+    }
+
+    @Test
+    public void should_add_one_deposit_operation() {
+
+        Statement statement = new Statement();
+
+        List<Operation> operationList = statement.addDepositOperation();
+
+        int nbOperations = 1;
+        assertThat(operationList).hasSize(nbOperations);
+        assertThat(operationList.get(0)).isEqualTo(Operation.of(OperationType.DEPOSIT));
     }
 }

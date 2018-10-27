@@ -3,6 +3,7 @@ package fr.lacombe.kata.bank;
 import java.util.ArrayList;
 import java.util.List;
 
+import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
 import static java.util.Collections.emptyList;
 
 class Statement {
@@ -17,8 +18,8 @@ class Statement {
         return emptyList();
     }
 
-    List<Operation> addOperation() {
-        operations.add(new Operation());
+    List<Operation> addDepositOperation() {
+        operations.add(Operation.of(DEPOSIT));
         return operations;
     }
 }
