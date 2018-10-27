@@ -5,9 +5,11 @@ import java.util.List;
 class Account {
 
     private final Amount balance;
+    private final Statement statement;
 
     private Account(Amount balance) {
         this.balance = balance;
+        statement = new Statement();
     }
 
     static Account of(Amount balance) {
@@ -23,6 +25,6 @@ class Account {
     }
 
     List<Operation> history() {
-        throw new UnsupportedOperationException();
+        return statement.show();
     }
 }
