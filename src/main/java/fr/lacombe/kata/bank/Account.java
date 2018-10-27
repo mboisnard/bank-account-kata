@@ -7,13 +7,13 @@ class Account {
     private final Amount balance;
     private final Statement statement;
 
-    private Account(Amount balance) {
+    private Account(Amount balance, Statement statement) {
         this.balance = balance;
-        statement = new Statement();
+        this.statement = statement;
     }
 
     static Account of(Amount balance) {
-        return new Account(balance);
+        return new Account(balance, Statement.empty());
     }
 
     Amount deposit(Amount amount) {

@@ -7,8 +7,12 @@ class Statement {
 
     private final List<Operation> operations;
 
-    Statement() {
-        operations = new ArrayList<>();
+    private Statement(List<Operation> operations) {
+        this.operations = operations;
+    }
+
+    static Statement empty() {
+        return new Statement(new ArrayList<>());
     }
 
     List<Operation> show() {

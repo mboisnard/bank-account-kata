@@ -11,31 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StatementTest {
 
     @Test
-    public void should_be_no_operation_when_no_operation_has_been_performed() {
+    public void should_show_operations_list_after_several_operations_add_in_statement() {
 
-        List<Operation> operationList = new Statement().show();
-
-        assertThat(operationList).isEmpty();
-    }
-
-    @Test
-    public void should_add_one_deposit_and_one_withdraw_operations() {
-
-        Statement statement = new Statement();
-
-        statement.addOperation(Operation.of(DEPOSIT));
-        List<Operation> operationList = statement.addOperation(Operation.of(WITHDRAW));
-
-        int nbOperations = 2;
-        assertThat(operationList).hasSize(nbOperations);
-        assertThat(operationList.get(0)).isEqualTo(Operation.of(DEPOSIT));
-        assertThat(operationList.get(1)).isEqualTo(Operation.of(WITHDRAW));
-    }
-
-    @Test
-    public void should_be_one_deposit_and_one_withdraw_operations_when_show_statement_after_deposit_and_withdraw() {
-
-        Statement statement = new Statement();
+        Statement statement = Statement.empty();
 
         statement.addOperation(Operation.of(DEPOSIT));
         statement.addOperation(Operation.of(WITHDRAW));
