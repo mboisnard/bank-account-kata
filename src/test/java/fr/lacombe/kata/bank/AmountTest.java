@@ -26,31 +26,10 @@ public class AmountTest {
     @Test
     public void should_subtract_amount_with_another_amount() {
 
-        Amount amount = Amount.of(1);
-
-        Amount amountAfterSubtract = amount.subtract();
-
-        Amount expectedSubtractAmount = Amount.of(0);
-        assertThat(amountAfterSubtract).isEqualTo(expectedSubtractAmount);
-    }
-
-    @Test
-    public void should_subtract_amount_with_another_amount_2() {
-
         Amount amount = Amount.of(2);
         Amount amountAfterSubtract = amount.subtract();
 
         Amount expectedSubtractAmount = Amount.of(1);
-        assertThat(amountAfterSubtract).isEqualTo(expectedSubtractAmount);
-    }
-
-    @Test
-    public void should_subtract_amount_with_another_amount_3() {
-
-        Amount amount = Amount.of(3);
-        Amount amountAfterSubtract = amount.subtract();
-
-        Amount expectedSubtractAmount = Amount.of(2);
         assertThat(amountAfterSubtract).isEqualTo(expectedSubtractAmount);
     }
 }
