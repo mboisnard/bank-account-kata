@@ -15,4 +15,15 @@ public class StatementTest {
 
         assertThat(operationList).isEmpty();
     }
+
+    @Test
+    public void should_add_one_operation() {
+
+        Statement statement = new Statement();
+
+        List<Operation> operationList = statement.addOperation();
+
+        int nbOperations = 1;
+        assertThat(operationList).hasSize(nbOperations);
+    }
 }
