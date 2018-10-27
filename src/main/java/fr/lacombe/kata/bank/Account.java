@@ -11,4 +11,8 @@ class Account {
     Amount deposit(Amount amount) {
         return balance.add(amount);
     }
+
+    Amount withdrawal(Amount amount) {
+        return balance.subtract(amount);
+    }
 }
