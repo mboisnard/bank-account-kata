@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
+import static fr.lacombe.kata.bank.OperationType.WITHDRAW;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class StatementTest {
@@ -17,51 +19,16 @@ public class StatementTest {
     }
 
     @Test
-    public void should_add_one_operation() {
-
-        Statement statement = new Statement();
-
-        List<Operation> operationList = statement.addDepositOperation();
-
-        int nbOperations = 1;
-        assertThat(operationList).hasSize(nbOperations);
-    }
-
-    @Test
-    public void should_add_one_deposit_operation() {
-
-        Statement statement = new Statement();
-
-        List<Operation> operationList = statement.addDepositOperation();
-
-        int nbOperations = 1;
-        assertThat(operationList).hasSize(nbOperations);
-        assertThat(operationList.get(0)).isEqualTo(Operation.of(OperationType.DEPOSIT));
-    }
-
-    @Test
-    public void should_add_one_withdraw_operation() {
-
-        Statement statement = new Statement();
-
-        List<Operation> operationList = statement.addWithdrawOperation();
-
-        int nbOperations = 1;
-        assertThat(operationList).hasSize(nbOperations);
-        assertThat(operationList.get(0)).isEqualTo(Operation.of(OperationType.WITHDRAW));
-    }
-
-    @Test
     public void should_add_one_deposit_and_one_withdraw_operations() {
 
         Statement statement = new Statement();
 
-        statement.addDepositOperation();
-        List<Operation> operationList = statement.addWithdrawOperation();
+        statement.addOperation(Operation.of(DEPOSIT));
+        List<Operation> operationList = statement.addOperation(Operation.of(WITHDRAW));
 
         int nbOperations = 2;
         assertThat(operationList).hasSize(nbOperations);
-        assertThat(operationList.get(0)).isEqualTo(Operation.of(OperationType.DEPOSIT));
-        assertThat(operationList.get(1)).isEqualTo(Operation.of(OperationType.WITHDRAW));
+        assertThat(operationList.get(0)).isEqualTo(Operation.of(DEPOSIT));
+        assertThat(operationList.get(1)).isEqualTo(Operation.of(WITHDRAW));
     }
 }
