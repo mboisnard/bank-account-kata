@@ -13,6 +13,6 @@ class Account {
     }
 
     Amount withdrawal(Amount amount) {
-        return balance.subtract(amount);
+        return balance.subtract();
     }
 }
