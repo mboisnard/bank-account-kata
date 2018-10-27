@@ -19,9 +19,9 @@ public class SeeOperationsHistoryTest {
         account.withdrawal(Amount.of(20));
         account.deposit(Amount.of(100));
 
-        List<Operation> operationList = account.history();
+        List<Operation> history = account.history();
 
         int nbOperations = 5;
-        assertThat(operationList).hasSize(nbOperations);
+        assertThat(history).hasSize(nbOperations);
     }
 }
