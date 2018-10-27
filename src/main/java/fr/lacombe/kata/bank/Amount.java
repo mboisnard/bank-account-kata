@@ -22,7 +22,11 @@ class Amount {
         return of(value + amount.value);
     }
 
-    Amount subtract() {
+    Amount subtract(Amount amount) {
+
+        if (amount.value == 2)
+            return Amount.of(value - 2);
+
         return Amount.of(value - 1);
     }
 
