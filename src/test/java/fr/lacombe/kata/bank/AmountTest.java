@@ -32,8 +32,8 @@ public class AmountTest {
     @Test
     public void negative_amount_not_allowed() {
         assertThatThrownBy(() -> Amount.of(-1))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("negative amount not allowed");
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("negative amount not allowed");
     }
 
     @Test

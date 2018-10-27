@@ -1,5 +1,7 @@
 package fr.lacombe.kata.bank;
 
+import java.util.List;
+
 class Account {
 
     private final Amount balance;
@@ -18,5 +20,9 @@ class Account {
 
     Amount withdrawal(Amount amount) {
         return balance.subtract(amount);
+    }
+
+    List<Operation> history() {
+        throw new UnsupportedOperationException();
     }
 }
