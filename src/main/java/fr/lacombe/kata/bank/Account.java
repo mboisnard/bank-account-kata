@@ -2,9 +2,12 @@ package fr.lacombe.kata.bank;
 
 import java.util.List;
 
+import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
+import static fr.lacombe.kata.bank.OperationType.WITHDRAW;
+
 class Account {
 
-    private final Amount balance;
+    private Amount balance;
     private final Statement statement;
 
     private Account(Amount balance, Statement statement) {
@@ -17,11 +20,15 @@ class Account {
     }
 
     Amount deposit(Amount amount) {
-        return balance.add(amount);
+        balance = balance.add(amount);
+        statement.add(DEPOSIT, amount, balance);
+        return balance;
     }
 
     Amount withdrawal(Amount amount) {
-        return balance.subtract(amount);
+        balance = balance.subtract(amount);
+        statement.add(WITHDRAW, amount, balance);
+        return balance;
     }
 
     List<Operation> history() {
