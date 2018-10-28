@@ -15,14 +15,14 @@ public class StatementTest {
 
         Statement statement = Statement.empty();
 
-        statement.addOperation(Operation.of(DEPOSIT));
-        statement.addOperation(Operation.of(WITHDRAW));
+        statement.addOperation(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
+        statement.addOperation(Operation.of(WITHDRAW, Amount.of(10), Amount.of(0)));
 
         List<Operation> operationList = statement.show();
 
         int nbOperations = 2;
         assertThat(operationList).hasSize(nbOperations);
-        assertThat(operationList.get(0)).isEqualTo(Operation.of(DEPOSIT));
-        assertThat(operationList.get(1)).isEqualTo(Operation.of(WITHDRAW));
+        assertThat(operationList.get(0)).isEqualTo(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
+        assertThat(operationList.get(1)).isEqualTo(Operation.of(WITHDRAW, Amount.of(10), Amount.of(0)));
     }
 }
