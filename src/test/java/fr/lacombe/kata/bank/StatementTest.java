@@ -15,8 +15,8 @@ public class StatementTest {
 
         Statement statement = Statement.empty();
 
-        statement.addOperation(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
-        statement.addOperation(Operation.of(WITHDRAW, Amount.of(10), Amount.of(0)));
+        statement.add(DEPOSIT, Amount.of(10), Amount.of(10));
+        statement.add(WITHDRAW, Amount.of(10), Amount.of(0));
 
         List<Operation> operationList = statement.show();
 
