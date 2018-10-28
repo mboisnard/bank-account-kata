@@ -19,9 +19,13 @@ class Statement {
         return new ArrayList<>(operations);
     }
 
-    List<Operation> add(OperationType type, Amount amount, Amount balance) {
-        Operation operation = Operation.of(type, amount, balance);
+    Amount add(OperationType operationType, Amount amount, Amount balance) {
+
+        Amount updatedBalance = operationType.execute(balance, amount);
+
+        Operation operation = Operation.of(operationType, amount, updatedBalance);
         operations.add(operation);
-        return show();
+
+        return updatedBalance;
     }
 }

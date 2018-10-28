@@ -20,14 +20,12 @@ class Account {
     }
 
     Amount deposit(Amount amount) {
-        balance = balance.add(amount);
-        statement.add(DEPOSIT, amount, balance);
+        balance = statement.add(DEPOSIT, amount, balance);
         return balance;
     }
 
     Amount withdrawal(Amount amount) {
-        balance = balance.subtract(amount);
-        statement.add(WITHDRAW, amount, balance);
+        balance = statement.add(WITHDRAW, amount, balance);
         return balance;
     }
 
