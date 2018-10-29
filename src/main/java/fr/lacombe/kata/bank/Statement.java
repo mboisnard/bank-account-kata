@@ -2,6 +2,7 @@ package fr.lacombe.kata.bank;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 class Statement {
 
@@ -23,9 +24,12 @@ class Statement {
 
         Amount updatedBalance = operationType.execute(balance, amount);
 
-        Operation operation = Operation.of(operationType, amount, updatedBalance);
-        operations.add(operation);
+        operations.add(Operation.of(operationType, amount, updatedBalance));
 
         return updatedBalance;
+    }
+
+    Optional<Operation> lastOperation() {
+        return Optional.empty();
     }
 }
