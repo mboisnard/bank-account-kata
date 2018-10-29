@@ -20,6 +20,9 @@ class Operation {
     }
 
     Amount lastAmount(Optional<Operation> lastOperation) {
+        if (lastOperation.isPresent())
+            return lastOperation.get().amount;
+
         return Amount.of(0);
     }
 
