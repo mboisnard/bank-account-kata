@@ -28,7 +28,7 @@ public class StatementTest {
     }
 
     @Test
-    public void should_get_last_operation_or_empty_if_no_operation() {
+    public void should_empty_if_no_operation_found_in_statement() {
         Statement statement = Statement.empty();
 
         Optional<Operation> lastOperation = statement.lastOperation();
@@ -37,23 +37,15 @@ public class StatementTest {
     }
 
     @Test
-    public void should_get_last_operation_or_empty_if_no_operation_1() {
-        Statement statement = Statement.empty();
-
-        statement.add(DEPOSIT, Amount.of(10), Amount.of(0));
-        Optional<Operation> lastOperation = statement.lastOperation();
-
-        assertThat(lastOperation).isPresent().hasValue(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
-    }
-
-    @Test
-    public void should_get_last_operation_or_empty_if_no_operation_2() {
+    public void should_last_operation_if_operations_exist_in_statement() {
         Statement statement = Statement.empty();
 
         statement.add(DEPOSIT, Amount.of(10), Amount.of(0));
         statement.add(WITHDRAW, Amount.of(10), Amount.of(10));
         Optional<Operation> lastOperation = statement.lastOperation();
 
-        assertThat(lastOperation).isPresent().hasValue(Operation.of(WITHDRAW, Amount.of(10), Amount.of(0)));
+        assertThat(lastOperation)
+                .isPresent()
+                .hasValue(Operation.of(WITHDRAW, Amount.of(10), Amount.of(0)));
     }
 }

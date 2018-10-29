@@ -1,6 +1,7 @@
 package fr.lacombe.kata.bank;
 
 import java.util.Objects;
+import java.util.Optional;
 
 class Operation {
 
@@ -16,6 +17,10 @@ class Operation {
 
     static Operation of(OperationType operationType, Amount amount, Amount balance) {
         return new Operation(operationType, amount, balance);
+    }
+
+    Amount lastAmount(Optional<Operation> lastOperation) {
+        return Amount.of(0);
     }
 
     @Override
