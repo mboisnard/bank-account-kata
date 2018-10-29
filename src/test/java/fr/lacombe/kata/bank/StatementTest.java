@@ -35,4 +35,14 @@ public class StatementTest {
 
         assertThat(lastOperation).isEmpty();
     }
+
+    @Test
+    public void should_get_last_operation_or_empty_if_no_operation_1() {
+        Statement statement = Statement.empty();
+
+        statement.add(DEPOSIT, Amount.of(10), Amount.of(0));
+        Optional<Operation> lastOperation = statement.lastOperation();
+
+        assertThat(lastOperation).isPresent().hasValue(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
+    }
 }

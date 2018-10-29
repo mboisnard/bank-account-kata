@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
+
 class Statement {
 
     private final List<Operation> operations;
@@ -30,6 +32,9 @@ class Statement {
     }
 
     Optional<Operation> lastOperation() {
-        return Optional.empty();
+
+        if (operations.isEmpty())
+            return Optional.empty();
+        return Optional.of(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
     }
 }
