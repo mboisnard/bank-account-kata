@@ -19,7 +19,15 @@ class Operation {
         return new Operation(operationType, amount, balance);
     }
 
-    Amount lastAmount(Optional<Operation> lastOperation) {
+    static Operation of(OperationType operationType, Amount amount, Optional<Operation> lastOperation) {
+
+        Amount balanceBeforeOperation = lastAmount(lastOperation);
+        Amount balanceAfterOperation = operationType.execute(balanceBeforeOperation, amount);
+
+        return new Operation(operationType, amount, balanceAfterOperation);
+    }
+
+    static Amount lastAmount(Optional<Operation> lastOperation) {
         if (lastOperation.isPresent())
             return lastOperation.get().amount;
 

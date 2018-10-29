@@ -13,9 +13,8 @@ public class OperationTest {
     public void should_find_correct_amount_when_no_operation() {
 
         Optional<Operation> lastOperation = Optional.empty();
-        Operation operation = Operation.of(DEPOSIT, Amount.of(1), Amount.of(1));
 
-        Amount lastBalance = operation.lastAmount(lastOperation);
+        Amount lastBalance = Operation.lastAmount(lastOperation);
 
         Amount balanceWhenNoLastOperation = Amount.of(0);
         assertThat(lastBalance).isEqualTo(balanceWhenNoLastOperation);
@@ -25,11 +24,27 @@ public class OperationTest {
     public void should_find_correct_amount_for_last_operation() {
 
         Optional<Operation> lastOperation = Optional.of(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
-        Operation operation = Operation.of(DEPOSIT, Amount.of(1), Amount.of(1));
 
-        Amount lastBalance = operation.lastAmount(lastOperation);
+        Amount lastBalance = Operation.lastAmount(lastOperation);
 
         Amount balanceOfLastOperation = Amount.of(10);
         assertThat(lastBalance).isEqualTo(balanceOfLastOperation);
+    }
+
+    @Test
+    public void should_create_operation_when_no_last_operation() {
+
+        Operation operation = Operation.of(DEPOSIT, Amount.of(1), Optional.empty());
+
+        assertThat(operation).isEqualTo(Operation.of(DEPOSIT, Amount.of(1), Amount.of(1)));
+    }
+
+    @Test
+    public void should_create_operation_when_last_operation() {
+        Optional<Operation> lastOperation = Optional.of(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
+
+        Operation operation = Operation.of(DEPOSIT, Amount.of(1), lastOperation);
+
+        assertThat(operation).isEqualTo(Operation.of(DEPOSIT, Amount.of(1), Amount.of(11)));
     }
 }
