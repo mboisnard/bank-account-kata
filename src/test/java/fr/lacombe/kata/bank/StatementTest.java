@@ -12,12 +12,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class StatementTest {
 
     @Test
+    public void should_create_operation_with_updated_balance() {
+        Statement statement = Statement.empty();
+
+        Amount amountToDeposit = Amount.of(10);
+        Operation executedOperation = statement.add(DEPOSIT, amountToDeposit);
+
+        Amount balanceAfterDeposit = Amount.of(10);
+        assertThat(executedOperation).isEqualTo(Operation.of(DEPOSIT, amountToDeposit, balanceAfterDeposit));
+    }
+
+    @Test
     public void should_show_operations_list_after_several_operations_add_in_statement() {
 
         Statement statement = Statement.empty();
 
-        statement.add(DEPOSIT, Amount.of(10), Amount.of(0));
-        statement.add(WITHDRAW, Amount.of(10), Amount.of(10));
+        statement.add(DEPOSIT, Amount.of(10));
+        statement.add(WITHDRAW, Amount.of(10));
 
         List<Operation> operationList = statement.show();
 
@@ -28,7 +39,7 @@ public class StatementTest {
     }
 
     @Test
-    public void should_empty_if_no_operation_found_in_statement() {
+    public void should_be_empty_when_no_operation_exist_in_statement() {
         Statement statement = Statement.empty();
 
         Optional<Operation> lastOperation = statement.lastOperation();
@@ -37,24 +48,15 @@ public class StatementTest {
     }
 
     @Test
-    public void should_last_operation_if_operations_exist_in_statement() {
+    public void should_last_operation_when_operations_exist_in_statement() {
         Statement statement = Statement.empty();
 
-        statement.add(DEPOSIT, Amount.of(10), Amount.of(0));
-        statement.add(WITHDRAW, Amount.of(10), Amount.of(10));
+        statement.add(DEPOSIT, Amount.of(10));
+        statement.add(WITHDRAW, Amount.of(10));
         Optional<Operation> lastOperation = statement.lastOperation();
 
         assertThat(lastOperation)
                 .isPresent()
                 .hasValue(Operation.of(WITHDRAW, Amount.of(10), Amount.of(0)));
-    }
-
-    @Test
-    public void should_add_operation_with_last_operation() {
-        Statement statement = Statement.empty();
-
-        Operation executedOperation = statement.add(DEPOSIT, Amount.of(10));
-
-        assertThat(executedOperation).isEqualTo(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
     }
 }

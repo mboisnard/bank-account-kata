@@ -14,7 +14,7 @@ public class OperationTest {
 
         Optional<Operation> lastOperation = Optional.empty();
 
-        Amount lastBalance = Operation.lastAmount(lastOperation);
+        Amount lastBalance = Operation.lastBalance(lastOperation);
 
         Amount balanceWhenNoLastOperation = Amount.of(0);
         assertThat(lastBalance).isEqualTo(balanceWhenNoLastOperation);
@@ -25,7 +25,7 @@ public class OperationTest {
 
         Optional<Operation> lastOperation = Optional.of(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
 
-        Amount lastBalance = Operation.lastAmount(lastOperation);
+        Amount lastBalance = Operation.lastBalance(lastOperation);
 
         Amount balanceOfLastOperation = Amount.of(10);
         assertThat(lastBalance).isEqualTo(balanceOfLastOperation);

@@ -12,21 +12,16 @@ class Statement {
         this.operations = operations;
     }
 
+    static Statement of(List<Operation> operations) {
+        return new Statement(new ArrayList<>(operations));
+    }
+
     static Statement empty() {
         return new Statement(new ArrayList<>());
     }
 
     List<Operation> show() {
         return new ArrayList<>(operations);
-    }
-
-    Amount add(OperationType operationType, Amount amount, Amount balance) {
-
-        Amount updatedBalance = operationType.execute(balance, amount);
-
-        operations.add(Operation.of(operationType, amount, updatedBalance));
-
-        return updatedBalance;
     }
 
     Operation add(OperationType operationType, Amount amount) {

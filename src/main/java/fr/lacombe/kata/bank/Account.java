@@ -7,26 +7,26 @@ import static fr.lacombe.kata.bank.OperationType.WITHDRAW;
 
 class Account {
 
-    private Amount balance;
     private final Statement statement;
 
-    private Account(Amount balance, Statement statement) {
-        this.balance = balance;
+    private Account(Statement statement) {
         this.statement = statement;
     }
 
-    static Account of(Amount balance) {
-        return new Account(balance, Statement.empty());
+    static Account of(Statement statement) {
+        return new Account(statement);
     }
 
-    Amount deposit(Amount amount) {
-        balance = statement.add(DEPOSIT, amount, balance);
-        return balance;
+    static Account empty() {
+        return new Account(Statement.empty());
     }
 
-    Amount withdrawal(Amount amount) {
-        balance = statement.add(WITHDRAW, amount, balance);
-        return balance;
+    Operation deposit(Amount amount) {
+        return statement.add(DEPOSIT, amount);
+    }
+
+    Operation withdrawal(Amount amount) {
+        return statement.add(WITHDRAW, amount);
     }
 
     List<Operation> history() {
