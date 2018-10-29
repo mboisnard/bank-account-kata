@@ -48,4 +48,13 @@ public class StatementTest {
                 .isPresent()
                 .hasValue(Operation.of(WITHDRAW, Amount.of(10), Amount.of(0)));
     }
+
+    @Test
+    public void should_add_operation_with_last_operation() {
+        Statement statement = Statement.empty();
+
+        Operation executedOperation = statement.add(DEPOSIT, Amount.of(10));
+
+        assertThat(executedOperation).isEqualTo(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
+    }
 }

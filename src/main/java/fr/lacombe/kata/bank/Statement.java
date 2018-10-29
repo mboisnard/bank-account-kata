@@ -29,6 +29,14 @@ class Statement {
         return updatedBalance;
     }
 
+    Operation add(OperationType operationType, Amount amount) {
+
+        Operation executedOperation = Operation.of(operationType, amount, lastOperation());
+        operations.add(executedOperation);
+
+        return executedOperation;
+    }
+
     Optional<Operation> lastOperation() {
 
         if (operations.isEmpty())
