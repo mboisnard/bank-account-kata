@@ -13,7 +13,6 @@ public class MakeAWithdrawalTest {
 
     @Test
     public void given_an_amount_to_withdraw_for_a_not_empty_account() {
-
         Amount balanceBeforeWithdraw = Amount.of(250);
         Statement statement = Statement.of(singletonList(Operation.of(DEPOSIT, balanceBeforeWithdraw, Optional.empty())));
         Account account = Account.of(statement);

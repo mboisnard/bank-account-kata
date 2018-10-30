@@ -12,7 +12,6 @@ public class MakeADepositTest {
 
     @Test
     public void given_an_amount_to_deposit_to_the_account_balance() {
-
         Amount balanceBeforeDeposit = Amount.of(100);
         Statement statement = Statement.of(singletonList(Operation.of(DEPOSIT, balanceBeforeDeposit, Optional.empty())));
         Account account = Account.of(statement);

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static java.util.Collections.emptyList;
+
 class Statement {
 
     private final List<Operation> operations;
@@ -17,7 +19,7 @@ class Statement {
     }
 
     static Statement empty() {
-        return new Statement(new ArrayList<>());
+        return of(emptyList());
     }
 
     List<Operation> show() {

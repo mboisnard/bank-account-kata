@@ -24,7 +24,6 @@ public class StatementTest {
 
     @Test
     public void should_show_operations_list_after_several_operations_add_in_statement() {
-
         Statement statement = Statement.empty();
 
         statement.add(DEPOSIT, Amount.of(10));
