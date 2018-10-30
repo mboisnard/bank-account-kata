@@ -19,19 +19,19 @@ class Operation {
         return new Operation(operationType, amount, balance);
     }
 
-    static Operation of(OperationType operationType, Amount amount, Optional<Operation> lastOperation) {
+    static Operation from(OperationType operationType, Amount amount, Optional<Operation> lastOperation) {
 
         Amount balanceBeforeOperation = lastBalance(lastOperation);
         Amount balanceAfterOperation = operationType.execute(balanceBeforeOperation, amount);
 
-        return new Operation(operationType, amount, balanceAfterOperation);
+        return of(operationType, amount, balanceAfterOperation);
     }
 
     static Amount lastBalance(Optional<Operation> lastOperation) {
         if (lastOperation.isPresent())
             return lastOperation.get().balance;
 
-        return Amount.of(0);
+        return Amount.defaultAmount();
     }
 
     @Override

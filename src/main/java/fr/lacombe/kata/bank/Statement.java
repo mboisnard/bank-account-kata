@@ -28,7 +28,7 @@ class Statement {
 
     Operation add(OperationType operationType, Amount amount) {
 
-        Operation executedOperation = Operation.of(operationType, amount, lastOperation());
+        Operation executedOperation = Operation.from(operationType, amount, lastOperation());
         operations.add(executedOperation);
 
         return executedOperation;

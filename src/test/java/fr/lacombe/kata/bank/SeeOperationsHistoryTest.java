@@ -14,7 +14,7 @@ public class SeeOperationsHistoryTest {
 
     @Test
     public void show_operations_history_after_several_deposit_and_withdrawal() {
-        Statement statement = Statement.of(singletonList(Operation.of(DEPOSIT, Amount.of(100), Optional.empty())));
+        Statement statement = Statement.of(singletonList(Operation.from(DEPOSIT, Amount.of(100), Optional.empty())));
         Account account = Account.of(statement);
 
         account.deposit(Amount.of(50));

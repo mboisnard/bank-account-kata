@@ -11,7 +11,7 @@ public class OperationTest {
 
     @Test
     public void should_create_operation_with_balance_equal_to_amount_when_there_is_no_last_operation() {
-        Operation operation = Operation.of(DEPOSIT, Amount.of(1), Optional.empty());
+        Operation operation = Operation.from(DEPOSIT, Amount.of(1), Optional.empty());
 
         assertThat(operation).isEqualTo(Operation.of(DEPOSIT, Amount.of(1), Amount.of(1)));
     }
@@ -20,7 +20,7 @@ public class OperationTest {
     public void should_create_operation_with_balance_equal_to_the_calculation_between_amount_and_last_operation() {
         Optional<Operation> lastOperation = Optional.of(Operation.of(DEPOSIT, Amount.of(10), Amount.of(10)));
 
-        Operation operation = Operation.of(DEPOSIT, Amount.of(1), lastOperation);
+        Operation operation = Operation.from(DEPOSIT, Amount.of(1), lastOperation);
 
         assertThat(operation).isEqualTo(Operation.of(DEPOSIT, Amount.of(1), Amount.of(11)));
     }

@@ -18,6 +18,10 @@ class Amount {
         return new Amount(amount);
     }
 
+    static Amount defaultAmount() {
+        return of(0);
+    }
+
     Amount add(Amount amount) {
         return of(value + amount.value);
     }
