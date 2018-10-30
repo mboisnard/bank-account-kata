@@ -17,8 +17,8 @@ class Account {
         return new Account(statement);
     }
 
-    static Account empty() {
-        return of(Statement.empty());
+    static Account empty(DateProvider dateProvider) {
+        return of(Statement.empty(dateProvider));
     }
 
     Operation deposit(Amount amount) {

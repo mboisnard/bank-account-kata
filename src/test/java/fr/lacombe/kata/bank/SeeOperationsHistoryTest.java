@@ -5,16 +5,25 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Optional;
 
+import static fr.lacombe.kata.bank.DateProviderMock.PROVIDER_TIME;
+import static fr.lacombe.kata.bank.DateProviderMock.getMock;
 import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
 import static fr.lacombe.kata.bank.OperationType.WITHDRAW;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 public class SeeOperationsHistoryTest {
 
     @Test
     public void show_operations_history_after_several_deposit_and_withdrawal() {
-        Statement statement = Statement.of(singletonList(Operation.from(DEPOSIT, Amount.of(100), Optional.empty())));
+        DateProvider dateProvider = getMock();
+        when(dateProvider.getDate()).thenReturn(PROVIDER_TIME);
+
+        List<Operation> operationsBeforeActions = singletonList(
+            Operation.from(DEPOSIT, Amount.of(100), Optional.empty(), PROVIDER_TIME)
+        );
+        Statement statement = Statement.of(operationsBeforeActions, dateProvider);
         Account account = Account.of(statement);
 
         account.deposit(Amount.of(50));
@@ -27,11 +36,11 @@ public class SeeOperationsHistoryTest {
 
         int nbOperations = 6;
         assertThat(history).hasSize(nbOperations);
-        assertThat(history.get(0)).isEqualTo(Operation.of(DEPOSIT, Amount.of(100), Amount.of(100)));
-        assertThat(history.get(1)).isEqualTo(Operation.of(DEPOSIT, Amount.of(50), Amount.of(150)));
-        assertThat(history.get(2)).isEqualTo(Operation.of(WITHDRAW, Amount.of(10), Amount.of(140)));
-        assertThat(history.get(3)).isEqualTo(Operation.of(DEPOSIT, Amount.of(50), Amount.of(190)));
-        assertThat(history.get(4)).isEqualTo(Operation.of(WITHDRAW, Amount.of(20), Amount.of(170)));
-        assertThat(history.get(5)).isEqualTo(Operation.of(DEPOSIT, Amount.of(100), Amount.of(270)));
+        assertThat(history.get(0)).isEqualTo(Operation.of(DEPOSIT, Amount.of(100), Amount.of(100), PROVIDER_TIME));
+        assertThat(history.get(1)).isEqualTo(Operation.of(DEPOSIT, Amount.of(50), Amount.of(150), PROVIDER_TIME));
+        assertThat(history.get(2)).isEqualTo(Operation.of(WITHDRAW, Amount.of(10), Amount.of(140), PROVIDER_TIME));
+        assertThat(history.get(3)).isEqualTo(Operation.of(DEPOSIT, Amount.of(50), Amount.of(190), PROVIDER_TIME));
+        assertThat(history.get(4)).isEqualTo(Operation.of(WITHDRAW, Amount.of(20), Amount.of(170), PROVIDER_TIME));
+        assertThat(history.get(5)).isEqualTo(Operation.of(DEPOSIT, Amount.of(100), Amount.of(270), PROVIDER_TIME));
     }
 }
