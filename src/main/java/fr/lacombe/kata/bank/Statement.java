@@ -30,7 +30,10 @@ class Statement {
 
     Operation add(OperationType operationType, Amount amount) {
 
-        Operation executedOperation = Operation.from(operationType, amount, lastOperation(), clock.getTime());
+        Operation executedOperation = lastOperation()
+            .map(operation -> Operation.fromLastOperation(operationType, amount, operation, clock.getTime()))
+            .orElseGet(() -> Operation.fromNoOperation(operationType, amount, clock.getTime()));
+
         operations.add(executedOperation);
 
         return executedOperation;

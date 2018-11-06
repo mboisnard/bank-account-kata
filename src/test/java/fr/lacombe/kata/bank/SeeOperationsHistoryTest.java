@@ -3,7 +3,6 @@ package fr.lacombe.kata.bank;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static fr.lacombe.kata.bank.ClockMock.DEFAULT_CLOCK_TIME;
 import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
@@ -18,7 +17,7 @@ public class SeeOperationsHistoryTest {
         Clock clock = ClockMock.givenDefaultClockTime();
 
         List<Operation> operationsBeforeActions = singletonList(
-            Operation.from(DEPOSIT, Amount.of(100), Optional.empty(), DEFAULT_CLOCK_TIME)
+            Operation.fromNoOperation(DEPOSIT, Amount.of(100), DEFAULT_CLOCK_TIME)
         );
         Statement statement = Statement.of(operationsBeforeActions, clock);
         Account account = Account.of(statement);

@@ -2,7 +2,6 @@ package fr.lacombe.kata.bank;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Optional;
 
 class Operation {
 
@@ -22,20 +21,20 @@ class Operation {
         return new Operation(operationType, amount, balance, date);
     }
 
-    static Operation from(OperationType operationType, Amount amount,
-                          Optional<Operation> lastOperation, LocalDateTime date) {
+    static Operation fromNoOperation(OperationType operationType, Amount amount, LocalDateTime date) {
+        return createOperation(operationType, amount, Amount.defaultAmount(), date);
+    }
 
-        Amount balanceBeforeOperation = lastBalance(lastOperation);
+    static Operation fromLastOperation(OperationType operationType, Amount amount,
+                                       Operation lastOperation, LocalDateTime date) {
+        return createOperation(operationType, amount, lastOperation.balance, date);
+    }
+
+    private static Operation createOperation(OperationType operationType, Amount amount,
+                                             Amount balanceBeforeOperation, LocalDateTime date) {
         Amount balanceAfterOperation = operationType.execute(balanceBeforeOperation, amount);
 
         return of(operationType, amount, balanceAfterOperation, date);
-    }
-
-    static Amount lastBalance(Optional<Operation> lastOperation) {
-        if (lastOperation.isPresent())
-            return lastOperation.get().balance;
-
-        return Amount.defaultAmount();
     }
 
     @Override

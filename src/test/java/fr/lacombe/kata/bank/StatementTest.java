@@ -14,7 +14,7 @@ public class StatementTest {
 
     @Test
     public void should_create_operation_with_updated_balance() {
-        Clock clock = ClockMock.givenTimeIs(DEFAULT_CLOCK_TIME);
+        Clock clock = ClockMock.givenDefaultClockTime();
         Statement statement = Statement.empty(clock);
 
         Amount amountToDeposit = Amount.of(10);

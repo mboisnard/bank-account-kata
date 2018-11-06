@@ -3,7 +3,6 @@ package fr.lacombe.kata.bank;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static fr.lacombe.kata.bank.ClockMock.DEFAULT_CLOCK_TIME;
 import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
@@ -20,7 +19,7 @@ public class MakeAWithdrawalTest {
 
         Amount balanceBeforeWithdraw = Amount.of(250);
         List<Operation> operationsBeforeWithdraw = singletonList(
-            Operation.from(DEPOSIT, balanceBeforeWithdraw, Optional.empty(), now())
+            Operation.fromNoOperation(DEPOSIT, balanceBeforeWithdraw, now())
         );
         Statement statement = Statement.of(operationsBeforeWithdraw, clock);
         Account account = Account.of(statement);
@@ -35,7 +34,7 @@ public class MakeAWithdrawalTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void given_an_amount_to_withdraw_for_an_empty_account_should_not_be_allowed() {
-        Clock clock = ClockMock.givenTimeIs(DEFAULT_CLOCK_TIME);
+        Clock clock = ClockMock.givenDefaultClockTime();
         Account account = Account.empty(clock);
 
         Amount amountToWithdraw = Amount.of(100);

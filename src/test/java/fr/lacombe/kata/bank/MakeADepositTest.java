@@ -3,7 +3,6 @@ package fr.lacombe.kata.bank;
 import org.junit.Test;
 
 import java.util.List;
-import java.util.Optional;
 
 import static fr.lacombe.kata.bank.ClockMock.DEFAULT_CLOCK_TIME;
 import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
@@ -19,7 +18,7 @@ public class MakeADepositTest {
 
         Amount balanceBeforeDeposit = Amount.of(100);
         List<Operation> operationsBeforeDeposit = singletonList(
-            Operation.from(DEPOSIT, balanceBeforeDeposit, Optional.empty(), now())
+            Operation.fromNoOperation(DEPOSIT, balanceBeforeDeposit, now())
         );
         Statement statement = Statement.of(operationsBeforeDeposit, clock);
 
