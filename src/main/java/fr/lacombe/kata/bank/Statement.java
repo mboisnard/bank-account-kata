@@ -9,19 +9,19 @@ import static java.util.Collections.emptyList;
 class Statement {
 
     private final List<Operation> operations;
-    private final DateProvider dateProvider;
+    private final Clock clock;
 
-    private Statement(List<Operation> operations, DateProvider dateProvider) {
+    private Statement(List<Operation> operations, Clock clock) {
         this.operations = operations;
-        this.dateProvider = dateProvider;
+        this.clock = clock;
     }
 
-    static Statement of(List<Operation> operations, DateProvider dateProvider) {
-        return new Statement(new ArrayList<>(operations), dateProvider);
+    static Statement of(List<Operation> operations, Clock clock) {
+        return new Statement(new ArrayList<>(operations), clock);
     }
 
-    static Statement empty(DateProvider dateProvider) {
-        return of(emptyList(), dateProvider);
+    static Statement empty(Clock clock) {
+        return of(emptyList(), clock);
     }
 
     List<Operation> show() {
@@ -30,7 +30,7 @@ class Statement {
 
     Operation add(OperationType operationType, Amount amount) {
 
-        Operation executedOperation = Operation.from(operationType, amount, lastOperation(), dateProvider.getDate());
+        Operation executedOperation = Operation.from(operationType, amount, lastOperation(), clock.getTime());
         operations.add(executedOperation);
 
         return executedOperation;
