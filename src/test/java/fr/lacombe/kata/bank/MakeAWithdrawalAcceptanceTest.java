@@ -2,27 +2,16 @@ package fr.lacombe.kata.bank;
 
 import org.junit.Test;
 
-import java.util.List;
-
+import static fr.lacombe.kata.bank.AccountInitializer.initializeAccount;
 import static fr.lacombe.kata.bank.ClockMock.DEFAULT_CLOCK_TIME;
-import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
 import static fr.lacombe.kata.bank.OperationType.WITHDRAW;
-import static java.time.LocalDateTime.now;
-import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MakeAWithdrawalAcceptanceTest {
 
     @Test
     public void given_an_amount_to_withdraw_for_a_not_empty_account_should_decrease_the_account_balance() {
-        Clock clock = ClockMock.withDefaultClockTime();
-
-        Amount balanceBeforeWithdraw = Amount.of(250);
-        List<Operation> operationsBeforeWithdraw = singletonList(
-            Operation.fromNoOperation(DEPOSIT, balanceBeforeWithdraw, now())
-        );
-        Statement statement = Statement.of(operationsBeforeWithdraw, clock);
-        Account account = Account.of(statement);
+        Account account = initializeAccount(Amount.of(250));
 
         Amount amountToWithdraw = Amount.of(100);
         Operation createdOperation = account.withdrawal(amountToWithdraw);

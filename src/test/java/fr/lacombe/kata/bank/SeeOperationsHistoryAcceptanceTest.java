@@ -4,23 +4,17 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static fr.lacombe.kata.bank.AccountInitializer.initializeAccount;
 import static fr.lacombe.kata.bank.ClockMock.DEFAULT_CLOCK_TIME;
 import static fr.lacombe.kata.bank.OperationType.DEPOSIT;
 import static fr.lacombe.kata.bank.OperationType.WITHDRAW;
-import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SeeOperationsHistoryAcceptanceTest {
 
     @Test
     public void show_operations_history_after_several_deposit_and_withdrawal() {
-        Clock clock = ClockMock.withDefaultClockTime();
-
-        List<Operation> operationsBeforeActions = singletonList(
-            Operation.fromNoOperation(DEPOSIT, Amount.of(100), DEFAULT_CLOCK_TIME)
-        );
-        Statement statement = Statement.of(operationsBeforeActions, clock);
-        Account account = Account.of(statement);
+        Account account = initializeAccount(Amount.of(100));
 
         account.deposit(Amount.of(50));
         account.withdrawal(Amount.of(10));
