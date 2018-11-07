@@ -17,7 +17,7 @@ class ClockMock {
         return clock;
     }
 
-    static Clock givenDefaultClockTime() {
+    static Clock withDefaultClockTime() {
         return givenTimeIs(DEFAULT_CLOCK_TIME);
     }
 }

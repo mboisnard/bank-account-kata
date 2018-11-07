@@ -14,7 +14,7 @@ public class StatementTest {
 
     @Test
     public void should_create_operation_with_updated_balance() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+        Clock clock = ClockMock.withDefaultClockTime();
         Statement statement = Statement.empty(clock);
 
         Amount amountToDeposit = Amount.of(10);
@@ -26,7 +26,7 @@ public class StatementTest {
 
     @Test
     public void should_show_operations_list_after_several_operations_add_in_statement() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+        Clock clock = ClockMock.withDefaultClockTime();
         Statement statement = Statement.empty(clock);
 
         statement.add(DEPOSIT, Amount.of(10));
@@ -42,7 +42,7 @@ public class StatementTest {
 
     @Test
     public void should_be_empty_when_no_operation_exist_in_statement() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+        Clock clock = ClockMock.withDefaultClockTime();
         Statement statement = Statement.empty(clock);
 
         Optional<Operation> lastOperation = statement.lastOperation();
@@ -52,7 +52,7 @@ public class StatementTest {
 
     @Test
     public void should_last_operation_when_operations_exist_in_statement() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+        Clock clock = ClockMock.withDefaultClockTime();
         Statement statement = Statement.empty(clock);
 
         statement.add(DEPOSIT, Amount.of(10));

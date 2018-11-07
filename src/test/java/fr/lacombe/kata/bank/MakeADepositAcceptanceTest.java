@@ -10,11 +10,11 @@ import static java.time.LocalDateTime.now;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MakeADepositTest {
+public class MakeADepositAcceptanceTest {
 
     @Test
-    public void given_an_amount_to_deposit_to_the_account_balance() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+    public void given_an_amount_to_deposit_should_increase_the_account_balance() {
+        Clock clock = ClockMock.withDefaultClockTime();
 
         Amount balanceBeforeDeposit = Amount.of(100);
         List<Operation> operationsBeforeDeposit = singletonList(

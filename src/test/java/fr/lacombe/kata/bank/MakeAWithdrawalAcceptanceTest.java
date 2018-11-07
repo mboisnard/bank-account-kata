@@ -11,11 +11,11 @@ import static java.time.LocalDateTime.now;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MakeAWithdrawalTest {
+public class MakeAWithdrawalAcceptanceTest {
 
     @Test
-    public void given_an_amount_to_withdraw_for_a_not_empty_account() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+    public void given_an_amount_to_withdraw_for_a_not_empty_account_should_decrease_the_account_balance() {
+        Clock clock = ClockMock.withDefaultClockTime();
 
         Amount balanceBeforeWithdraw = Amount.of(250);
         List<Operation> operationsBeforeWithdraw = singletonList(
@@ -34,7 +34,7 @@ public class MakeAWithdrawalTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void given_an_amount_to_withdraw_for_an_empty_account_should_not_be_allowed() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+        Clock clock = ClockMock.withDefaultClockTime();
         Account account = Account.empty(clock);
 
         Amount amountToWithdraw = Amount.of(100);

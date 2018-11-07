@@ -10,11 +10,11 @@ import static fr.lacombe.kata.bank.OperationType.WITHDRAW;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SeeOperationsHistoryTest {
+public class SeeOperationsHistoryAcceptanceTest {
 
     @Test
     public void show_operations_history_after_several_deposit_and_withdrawal() {
-        Clock clock = ClockMock.givenDefaultClockTime();
+        Clock clock = ClockMock.withDefaultClockTime();
 
         List<Operation> operationsBeforeActions = singletonList(
             Operation.fromNoOperation(DEPOSIT, Amount.of(100), DEFAULT_CLOCK_TIME)
